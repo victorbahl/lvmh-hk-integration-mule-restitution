@@ -294,7 +294,7 @@ layout: two-cols-header
 
 Try different prompt strategies — start broad, then iterate and refine. Experiment with what works best.
 
-> Hint: *Change me*
+> Hint: Claude is great at general Mule code, but newer components (like MCP) may not be in its training data. You could ask it to **search the web for examples** before generating unfamiliar syntax.
 
 ::right::
 
@@ -342,19 +342,24 @@ On Anypoint Exchange, you will find an MCP server connected to Confluence that e
 **Add this MCP to your environment and re-generate or refine your code to follow LVMH standards. Compare the before and after.**
 
 ---
-layout: end
-background: /bg-cover.svg
-class: text-white
+layout: image-right
+image: /pexels-a-darmel-7710087.jpg
+zoom: 0.75
 ---
 
-# 🎤 Presentation
+# 🎤 Show & Tell
 
-Prepare a short live demo showing the agent conversation end to end.
+Prepare a short presentation with a **live demo** of your agent conversation end to end.
 
-Show what you built, how you built it, and what surprised you.
+**Tell us:**
 
-<style>
-.slidev-layout { background: transparent !important; }
-h1 { color: #FAF8F5 !important; }
-p { color: #B8B2AA !important; }
-</style>
+- **Live demo** — show your agent querying all three systems in one conversation
+- **The journey** — your vibe-coding process, prompts that worked (and didn't), how you iterated
+- **What surprised you** — moments that changed how you think about building integrations
+- **What's next** — if you had another 4 hours, what would you add?
+
+<br>
+
+> **Need a slide deck?** [Fork this one](https://github.com/victorbahl/lvmh-hk-integration-mule-brief) — it was mainly vibe-coded with Claude Code 😊
+
+
