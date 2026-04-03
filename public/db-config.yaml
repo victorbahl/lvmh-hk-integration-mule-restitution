@@ -1,0 +1,9 @@
+#DB for MCP configurations
+DB_for_MCP:
+  host: cloud-services.demos.mulesoft.com
+  port: '31717'
+  username: root
+  password: Autom-tionR0cks.
+  rootPassword: Autom-tionR0cks.
+  database: lvmh
+  hostInternal: cloud-services.demos.internal

@@ -74,7 +74,7 @@ You are split into two teams. Use `team-1` or `team-2` as a prefix in all your n
 | | Step | What | Tool suggested |
 |---|---|---|---|
 | 🌉 | **1** | Create an MCP Bridge on top of the REST APIs | MuleSoft MCP Bridge |
-| 🛠️ | **2** | Vibe-code a MuleSoft MCP Server on top of the Database | Claude Code / MuleSoft Vibes |
+| 🛠️ | **2** | Vibe-code a MuleSoft MCP Server on top of the Database | Claude Code |
 | 🚀 | **3** | Deploy to Anypoint Platform | MuleSoft Vibes |
 | 🧪 | **4** | Test — the agent queries all three systems in one interaction | Claude Desktop |
 | 🔒 | **Bonus A** | Apply data masking policies on the Order API | Anypoint Platform + MuleSoft Vibes |
@@ -107,6 +107,8 @@ graph LR
   style AG fill:none,stroke:none,color:transparent
 ```
 
+---
+transition: none
 ---
 
 # Architecture — Step 1: MCP Bridge
@@ -219,42 +221,84 @@ graph LR
 ```
 
 ---
+layout: two-cols-header
+---
 
 # 🌉 Step 1 — Create the MCP Bridge
-
-<div class="grid grid-cols-[1fr_1fr] gap-8 items-start mt-2">
-<div>
+**Tool**: API Manager > MCP Bridge
 
 **In API Manager**, create an MCP Bridge on top of the **Order API** and **Fulfillment API**.
+
+::left::
 
 Browse each API spec and **select which endpoints to expose as tools** — not every endpoint needs to be agent-callable. Pick the ones that make sense for the use case.
 
 The bridge translates your selection into MCP-compatible tools — no code required.
 
-</div>
-<div class="flex flex-col items-center justify-start">
-  <img src="/screenshot-mcp-bridge.png" alt="MCP Bridge UI" class="rounded-lg shadow-xl border border-gray-200" style="max-height: 200px; object-fit: contain;" />
-  <span style="font-size: 0.6em; color: var(--light-gray); margin-top: 6px;">Selecting endpoints in the MCP Bridge UI</span>
-</div>
-</div>
+Deploy it on the **Ingress Flex Gateway** provided in your environment.
 
-<p style="margin-top: 16px; font-size: 0.78em; color: var(--mid-gray);">
-📖 <a href="https://docs.mulesoft.com/api-manager/latest/create-instance-task-mcp-bridge" target="_blank" style="color: var(--gold);">MCP Bridge documentation</a>
-</p>
+📖 [MCP Bridge docs](https://docs.mulesoft.com/api-manager/latest/create-instance-task-mcp-bridge)
 
+::right::
+
+![Selecting endpoints in the MCP Bridge UI](/screenshot-mcp-bridge.png)
+
+---
+layout: two-cols-header
 ---
 
 # 🛠️ Step 2 — Vibe-Code the MCP Server
+**Tool**: Claude Code / ACB in VS Code
 
-Using **Claude Code** in VS Code with the ACB extension, vibe-code a Mule application that connects to the **Products Database** and exposes it as an MCP server.
+Using **Claude Code** with the ACB extension, vibe-code a Mule application that connects to the **Products Database** and exposes it as an MCP server.
 
-Describe what you need in natural language — Claude Code will scaffold the Mule flows, database connectors, and MCP endpoint for you.
+Use these details to connect to the **Products Database**:
 
-<v-click>
+::left::
 
-> Name your project `team-n-product-mcp`
+### 🔐 Connection
 
-</v-click>
+```yaml
+host: cloud-services.demos.mulesoft.com
+port: 31717
+username: root
+password: Autom-tionR0cks.
+database: lvmh
+```
+
+::right::
+
+### 🛢️ Table `product_catalog`
+
+```sql
+id            INT AUTO_INCREMENT PRIMARY KEY
+product_id    VARCHAR(50)   -- PRD-XXXXXXXX
+sku           VARCHAR(50)
+name          VARCHAR(255)
+brand         VARCHAR(100)
+category      VARCHAR(100)
+subcategory   VARCHAR(100)
+price         DECIMAL(10,2)
+currency      VARCHAR(3)    -- default EUR
+stock_status  ENUM('IN_STOCK','OUT_OF_STOCK','LOW_STOCK')
+created_at    TIMESTAMP
+```
+
+
+---
+layout: two-cols-header
+---
+
+# 🛠️ Step 2 — Vibe-Code the MCP Server
+::left::
+
+Try different prompt strategies — start broad, then iterate and refine. Experiment with what works best.
+
+> Hint: *Change me*
+
+::right::
+
+![Claude Code in VS Code](/screenshot-claude-code.png)
 
 ---
 

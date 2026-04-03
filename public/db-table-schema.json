@@ -1,0 +1,91 @@
+{
+  "table": {
+    "name": "product_catalog",
+    "description": "Complete product catalog table containing information about luxury products from various brands including Sephora, Tiffany & Co., Louis Vuitton, Belmond, and TAG Heuer",
+    "engine": "MySQL/MariaDB",
+    "charset": "Default",
+    "columns": [
+      {
+        "name": "id",
+        "type": "INT",
+        "constraints": ["AUTO_INCREMENT", "PRIMARY KEY"],
+        "nullable": false,
+        "description": "Auto-incrementing unique identifier for each product record"
+      },
+      {
+        "name": "product_id",
+        "type": "VARCHAR(50)",
+        "constraints": ["NOT NULL", "UNIQUE"],
+        "nullable": false,
+        "description": "Unique product identifier with format 'PRD-XXXXXXXX' where X represents hexadecimal characters"
+      },
+      {
+        "name": "sku",
+        "type": "VARCHAR(50)",
+        "constraints": ["NOT NULL"],
+        "nullable": false,
+        "description": "Stock Keeping Unit - unique identifier for inventory management, format varies by brand (e.g., 'S-FRA-0001', 'T&C-JEW-0013')"
+      },
+      {
+        "name": "name",
+        "type": "VARCHAR(255)",
+        "constraints": ["NOT NULL"],
+        "nullable": false,
+        "description": "Full product name including brand, product type, and collection/season information"
+      },
+      {
+        "name": "brand",
+        "type": "VARCHAR(100)",
+        "constraints": ["NOT NULL"],
+        "nullable": false,
+        "description": "Brand name (Sephora, Tiffany & Co., Louis Vuitton, Belmond, TAG Heuer)"
+      },
+      {
+        "name": "category",
+        "type": "VARCHAR(100)",
+        "constraints": ["NOT NULL"],
+        "nullable": false,
+        "description": "High-level product category (e.g., Fragrances, Skincare, Makeup, Jewelry, Handbags, Watches, Experiences, etc.)"
+      },
+      {
+        "name": "subcategory",
+        "type": "VARCHAR(100)",
+        "constraints": ["NOT NULL"],
+        "nullable": false,
+        "description": "Specific product subcategory within the main category (e.g., Eau de Parfum, Cleanser, Lipstick, Brooch, Backpack, etc.)"
+      },
+      {
+        "name": "price",
+        "type": "DECIMAL(10,2)",
+        "constraints": ["NOT NULL"],
+        "nullable": false,
+        "precision": 10,
+        "scale": 2,
+        "description": "Product price with up to 10 digits total, 2 decimal places for cents/centimes"
+      },
+      {
+        "name": "currency",
+        "type": "VARCHAR(3)",
+        "constraints": ["NOT NULL"],
+        "default": "EUR",
+        "nullable": false,
+        "description": "Three-letter ISO currency code (default: EUR for Euro)"
+      },
+      {
+        "name": "stock_status",
+        "type": "ENUM('IN_STOCK', 'OUT_OF_STOCK', 'LOW_STOCK')",
+        "constraints": ["NOT NULL"],
+        "nullable": false,
+        "allowed_values": ["IN_STOCK", "OUT_OF_STOCK", "LOW_STOCK"],
+        "description": "Current inventory status of the product"
+      },
+      {
+        "name": "created_at",
+        "type": "TIMESTAMP",
+        "constraints": ["NOT NULL"],
+        "nullable": false,
+        "description": "Timestamp when the product record was created in the catalog"
+      }
+    ]
+  }
+}
