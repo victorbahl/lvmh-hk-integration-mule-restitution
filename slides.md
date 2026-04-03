@@ -353,13 +353,14 @@ Prepare a short presentation with a **live demo** of your agent conversation end
 
 **Tell us:**
 
-- **Live demo** — show your agent querying all three systems in one conversation
+- **Live demo** — show your agent querying all three systems in one conversation, your IDE / flows
 - **The journey** — your vibe-coding process, prompts that worked (and didn't), how you iterated
-- **What surprised you** — moments that changed how you think about building integrations
+- **What surprised you** — moments that changed how you think about prompting, building integrations...
 - **What's next** — if you had another 4 hours, what would you add?
 
-<br>
+<h2 style="color: #C4A265; margin-top: 24px; margin-bottom: 24px;">Be fun. Be creative. 🎉</h2>
 
-> **Need a slide deck?** [Fork this one](https://github.com/victorbahl/lvmh-hk-integration-mule-brief) — it was mainly vibe-coded with Claude Code 😊
+> **Need a slide deck?** [Fork this one](https://github.com/victorbahl/lvmh-hk-integration-mule-brief) — built with [Slidev](https://sli.dev) and mainly vibe-coded with Claude Code 😊
+
 
 
