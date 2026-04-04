@@ -31,11 +31,6 @@ Your mission: make Order Management <strong style="color: #C4A265;">agent-ready<
   <img src="/logo-mulesoft.svg" style="height: 30px; opacity: 0.5; filter: brightness(0) invert(1);" />
 </div>
 
-<style>
-h1 { color: #FAF8F5 !important; font-size: 2.4em !important; line-height: 1.2 !important; max-width: 520px; }
-.section-tag { color: #C4A265; font-size: 0.7em; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 16px; display: block; }
-</style>
-
 ---
 
 # The Challenge
@@ -45,6 +40,8 @@ h1 { color: #FAF8F5 !important; font-size: 2.4em !important; line-height: 1.2 !i
 You will be provided with backend systems representing a simplified e-commerce backend typical of LVMH Maisons. Your job is to make them **agent-ready** by exposing them as MCPs that an AI agent can query in natural language.
 
 You are split into two teams. Use `team-1` or `team-2` as a prefix in all your naming (bridges, apps, etc.).
+
+<br/>
 
 | System | Type | What it exposes |
 |---|---|---|
@@ -66,8 +63,11 @@ You are split into two teams. Use `team-1` or `team-2` as a prefix in all your n
 | **Claude Desktop** (or similar MCP client) | To test and demo your deployed MCPs |
 
 ---
+hide: true
+---
 
 # Suggested Build Plan
+
 
 <v-clicks>
 
@@ -83,130 +83,25 @@ You are split into two teams. Use `team-1` or `team-2` as a prefix in all your n
 </v-clicks>
 
 ---
-
-# Architecture — The Backend Systems
-
-<span class="section-tag">Starting Point</span>
-
-```mermaid {theme: 'base', themeVariables: {primaryColor: '#F5F0EB', primaryTextColor: '#1A1A1A', lineColor: '#B8B2AA', primaryBorderColor: '#B8B2AA'}, scale: 0.85}
-graph LR
-  OA["🛒&nbsp;Order API"] ~~~ PH1[ ] ~~~ BR[ ]
-  FA["📦&nbsp;Fulfillment API"] ~~~ PH2[ ] ~~~ BR
-  DB[("🗄️&nbsp;Products DB")] ~~~ PH3[ ] ~~~ MS[ ]
-  BR ~~~ AG[ ]
-  MS ~~~ AG
-
-  style OA fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style FA fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style DB fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style PH1 fill:none,stroke:none,color:transparent
-  style PH2 fill:none,stroke:none,color:transparent
-  style PH3 fill:none,stroke:none,color:transparent
-  style BR fill:none,stroke:none,color:transparent
-  style MS fill:none,stroke:none,color:transparent
-  style AG fill:none,stroke:none,color:transparent
-```
-
+hide: true
 ---
-transition: none
----
+# Suggested Architecture
 
-# Architecture — Step 1: MCP Bridge
-
-<span class="section-tag">Connect the APIs</span>
+<span class="section-tag">Result</span>
 
 ```mermaid {theme: 'base', themeVariables: {primaryColor: '#F5F0EB', primaryTextColor: '#1A1A1A', lineColor: '#B8B2AA'}, scale: 0.85}
 graph LR
-  OA["🛒&nbsp;Order API"] ~~~ PH1[ ] ~~~ BR["🌉&nbsp;MCP Bridge"]
-  OA --> BR
+  OA["🛒&nbsp;Order API"] ~~~ PX["🔒&nbsp;API Proxy<br/><i style='font-size:0.8em'>(with Policy)</i>"] ~~~ BR["🌉&nbsp;MCP Bridge"]
   FA["📦&nbsp;Fulfillment API"] ~~~ PH2[ ] ~~~ BR
-  FA --> BR
-  DB[("🗄️&nbsp;Products DB")] ~~~ PH3[ ] ~~~ MS[ ]
-  BR ~~~ AG[ ]
-  MS ~~~ AG
-
-  style OA fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style FA fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style DB fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style BR fill:#00A1DF,color:#fff,stroke:none
-  style PH1 fill:none,stroke:none,color:transparent
-  style PH2 fill:none,stroke:none,color:transparent
-  style PH3 fill:none,stroke:none,color:transparent
-  style MS fill:none,stroke:none,color:transparent
-  style AG fill:none,stroke:none,color:transparent
-```
-
----
-
-# Architecture — Step 2: MCP Server
-
-<span class="section-tag">Connect the Database</span>
-
-```mermaid {theme: 'base', themeVariables: {primaryColor: '#F5F0EB', primaryTextColor: '#1A1A1A', lineColor: '#B8B2AA'}, scale: 0.85}
-graph LR
-  OA["🛒&nbsp;Order API"] ~~~ PH1[ ] ~~~ BR["🌉&nbsp;MCP Bridge"]
-  OA --> BR
-  FA["📦&nbsp;Fulfillment API"] ~~~ PH2[ ] ~~~ BR
-  FA --> BR
   DB[("🗄️&nbsp;Products DB")] ~~~ PH3[ ] ~~~ MS["🛠️&nbsp;MCP Server"]
-  DB --> MS
-  BR ~~~ AG[ ]
+  BR ~~~ AG["🤖&nbsp;AI Agent<br/><i style='font-size:0.8em'>(e.g. Claude Desktop)</i>"]
   MS ~~~ AG
-
-  style OA fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style FA fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style DB fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style BR fill:#00A1DF,color:#fff,stroke:none
-  style MS fill:#D97757,color:#fff,stroke:none
-  style PH1 fill:none,stroke:none,color:transparent
-  style PH2 fill:none,stroke:none,color:transparent
-  style PH3 fill:none,stroke:none,color:transparent
-  style AG fill:none,stroke:none,color:transparent
-```
-
----
-
-# Architecture — Steps 3 & 4: Deploy & Test
-
-<span class="section-tag">The Agent orchestrates everything</span>
-
-```mermaid {theme: 'base', themeVariables: {primaryColor: '#F5F0EB', primaryTextColor: '#1A1A1A', lineColor: '#B8B2AA'}, scale: 0.85}
-graph LR
-  OA["🛒&nbsp;Order API"] ~~~ PH1[ ] ~~~ BR["🌉&nbsp;MCP Bridge"]
+  OA -.-> PX
+  PX --> BR
   OA --> BR
-  FA["📦&nbsp;Fulfillment API"] ~~~ PH2[ ] ~~~ BR
   FA --> BR
-  DB[("🗄️&nbsp;Products DB")] ~~~ PH3[ ] ~~~ MS["🛠️&nbsp;MCP Server"]
   DB --> MS
-  BR --> AG["🤖&nbsp;AI Agent<br/><i style='font-size:0.8em'>(e.g. Claude Desktop)</i>"]
-  MS --> AG
-
-  style OA fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style FA fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style DB fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style BR fill:#00A1DF,color:#fff,stroke:none
-  style MS fill:#D97757,color:#fff,stroke:none
-  style AG fill:#0A0A0A,color:#FAF8F5,stroke:#C4A265,stroke-width:2px
-  style PH1 fill:none,stroke:none,color:transparent
-  style PH2 fill:none,stroke:none,color:transparent
-  style PH3 fill:none,stroke:none,color:transparent
-```
-
----
-
-# Architecture — Bonus A: API Proxy + Policy
-
-<span class="section-tag">Data masking</span>
-
-```mermaid {theme: 'base', themeVariables: {primaryColor: '#F5F0EB', primaryTextColor: '#1A1A1A', lineColor: '#B8B2AA'}, scale: 0.85}
-graph LR
-  OA["🛒&nbsp;Order API"] -.-> PX["🔒&nbsp;API Proxy<br/><i style='font-size:0.8em'>(with Policy)</i>"]
-  PX --> BR["🌉&nbsp;MCP Bridge"]
-  FA["📦&nbsp;Fulfillment API"] ~~~ PH2[ ] ~~~ BR
-  FA --> BR
-  DB[("🗄️&nbsp;Products DB")] ~~~ PH3[ ] ~~~ MS["🛠️&nbsp;MCP Server"]
-  DB --> MS
-  BR --> AG["🤖&nbsp;AI Agent<br/><i style='font-size:0.8em'>(e.g. Claude Desktop)</i>"]
+  BR --> AG
   MS --> AG
 
   style OA fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
@@ -218,7 +113,58 @@ graph LR
   style PX fill:#C4A265,color:#fff,stroke:none
   style PH2 fill:none,stroke:none,color:transparent
   style PH3 fill:none,stroke:none,color:transparent
+  linkStyle 10 stroke:none
 ```
+
+---
+zoom: 0.95
+clicks: 6
+---
+
+# Suggested Build Plan & Architecture
+
+<div class="build-overview">
+
+<div class="steps-col">
+
+<div v-click="1" class="step-card">
+  <div class="step-num" style="background: var(--mulesoft-blue);">1</div>
+  <div><div class="step-title"><span class="step-emoji">🌉</span> MCP Bridge</div><div class="step-desc">Bridge the REST APIs via API Manager</div></div>
+</div>
+
+<div v-click="2" class="step-card">
+  <div class="step-num" style="background: var(--mulesoft-blue);">2</div>
+  <div><div class="step-title"><span class="step-emoji">🛠️</span> MCP Server</div><div class="step-desc">Vibe-code a Mule app for the Database</div></div>
+</div>
+
+<div v-click="3" class="step-card">
+  <div class="step-num" style="background: var(--deploy-green);">3</div>
+  <div><div class="step-title"><span class="step-emoji">🚀</span> Deploy</div><div class="step-desc">Ship to Anypoint Platform</div></div>
+</div>
+
+<div v-click="4" class="step-card">
+  <div class="step-num" style="background: var(--gold);">4</div>
+  <div><div class="step-title"><span class="step-emoji">🧪</span> Test</div><div class="step-desc">Agent queries all three systems</div></div>
+</div>
+
+<div v-click="5" class="step-card bonus">
+  <div class="step-num" style="background: var(--bonus-color);">A</div>
+  <div><div class="step-title"><span class="step-emoji">🔒</span> Data Masking</div><div class="step-desc">Apply policies on the Order API</div></div>
+</div>
+
+<div v-click="6" class="step-card bonus">
+  <div class="step-num" style="background: var(--bonus-color);">B</div>
+  <div><div class="step-title"><span class="step-emoji">📏</span> Best Practices</div><div class="step-desc">Refine code to LVMH standards</div></div>
+</div>
+
+</div>
+
+<div class="arch-col">
+  <ArchDiagram />
+</div>
+
+</div>
+
 
 ---
 layout: two-cols-header
@@ -290,9 +236,11 @@ layout: two-cols-header
 ---
 
 # 🛠️ Step 2 — Vibe-Code the MCP Server
+**Tool**: Claude Code / ACB in VS Code
+
 ::left::
 
-Try different prompt strategies — start broad, then iterate and refine. Experiment with what works best.
+Try different prompt strategies — iterate and refine. Experiment with what works best.
 
 > Hint: Claude is great at general Mule code, but newer components (like MCP) may not be in its training data. You could ask it to **search the web for examples** before generating unfamiliar syntax.
 
@@ -301,50 +249,116 @@ Try different prompt strategies — start broad, then iterate and refine. Experi
 ![Claude Code in VS Code](/screenshot-claude-code.png)
 
 ---
+layout: two-cols-header
+---
 
 # 🚀 Step 3 — Deploy to Anypoint Platform
+**Tool**: MuleSoft Vibes / ACB in VS Code
+
+::left::
 
 Deploy your MCP server to the provided Anypoint environment using **MuleSoft Vibes**.
 
-Ask Vibes to deploy your application — it handles packaging, environment selection, and deployment through natural language commands. Both MCPs must be live and callable.
+Ask Vibes to deploy your application — it handles packaging, environment selection, and deployment through natural language commands. MCP Server must be live and callable.
 
+::right::
+
+![MuleSoft Vibes in VS Code](/screenshot-mulesoft-vibes.png)
+
+
+---
+layout: two-cols-header
 ---
 
 # 🧪 Step 4 — Test with an AI Agent
+**Tool**: Claude Desktop (or similar MCP client)
+
+::left::
 
 Connect both MCPs to **Claude Desktop** (or any MCP-compatible agent) and test a live conversation that queries **all three systems** in a single interaction.
 
-<v-click>
-
 > Try: *"Show me the 3 latest orders for customer tao.c@gmail.com, with shipment info, and the full product details for every item ordered."*
 
-</v-click>
+::right::
 
+![Claude Desktop](/screenshot-mulesoft-vibes.png)
+
+
+---
+layout: two-cols-header
 ---
 
 # 🔒 Bonus A — Data Masking
+**Tool**: API Manager + MuleSoft Vibes
+
+::left::
+
+⚠️ Your agent sees **everything** — customer emails, addresses, phone numbers...
+
+In production, that could be a problem.
+
+````md magic-move
+```json
+{
+  "name": "Tao Chen",
+  "email": "tao.chen@gmail.com",
+  "address": "12 Rue de Rivoli, Paris"
+  "phone": "+33 6 12 34 56 78",
+}
+```
+```json
+{
+  "name": "T** C***",
+  "email": "t*****@g****.com",
+  "phone": "+33 * ** ** ** **",
+}
+```
+````
+
+<br/>
+
+<v-clicks>
+
+> 💡 Start with just **one field** — you can always add more later.
+
+</v-clicks>
+
+::right::
+
+<v-clicks>
+
+**Suggested steps**:
+
+</v-clicks>
 
 <v-clicks>
 
 1. Create an **API proxy** of the Order API in API Manager
 2. Apply a **data masking policy** on the proxy using MuleSoft Vibes
 3. Update your **MCP Bridge routing** to point to the proxy instead of the original API
-4. Test that sensitive fields are masked in the agent's response
+4. Test that sensitive field is masked in the agent's response
 
 </v-clicks>
 
 ---
+layout: two-cols-header
+---
 
 # 📏 Bonus B — LVMH Best Practices
+**Tool**: Claude Code / ACB in VS Code
 
-On Anypoint Exchange, you will find an MCP server connected to Confluence that exposes LVMH's integration standards and best practices.
+::left::
 
-**Add this MCP to your environment and re-generate or refine your code to follow LVMH standards. Compare the before and after.**
+On Anypoint Exchange, you will find an MCP server connected to Confluence that exposes some LVMH's integration standards and best practices.
+
+**Add this MCP to your environment and re-generate or refine your MuleSoft MCP Server to follow LVMH standards. Compare the before and after.**
+
+::right::
 
 ---
 layout: image-right
-image: /pexels-a-darmel-7710087.jpg
-zoom: 0.75
+image: /showtime.png
+zoom: 0.8
 ---
 
 # 🎤 Show & Tell

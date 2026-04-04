@@ -1,0 +1,121 @@
+<template>
+  <svg viewBox="0 0 440 420" xmlns="http://www.w3.org/2000/svg" class="arch-svg">
+    <defs>
+      <filter id="bshadow" x="-8%" y="-8%" width="116%" height="124%">
+        <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.07"/>
+      </filter>
+    </defs>
+
+    <!-- Always visible: 3 backend systems at the bottom -->
+    <g filter="url(#bshadow)">
+      <rect x="10" y="340" width="122" height="52" rx="8" fill="var(--cream)" stroke="var(--light-gray)" stroke-width="1.5"/>
+      <text x="71" y="370" text-anchor="middle" class="box-label" fill="var(--charcoal)">🛒 Order API</text>
+    </g>
+    <g filter="url(#bshadow)">
+      <rect x="158" y="340" width="122" height="52" rx="8" fill="var(--cream)" stroke="var(--light-gray)" stroke-width="1.5"/>
+      <text x="219" y="370" text-anchor="middle" class="box-label" fill="var(--charcoal)">📦 Fulfillment API</text>
+    </g>
+    <g filter="url(#bshadow)">
+      <rect x="306" y="340" width="122" height="52" rx="8" fill="var(--cream)" stroke="var(--light-gray)" stroke-width="1.5"/>
+      <text x="367" y="370" text-anchor="middle" class="box-label" fill="var(--charcoal)">🗄️ Products DB</text>
+    </g>
+
+    <!-- Click 1: MCP Bridge + connections from both APIs -->
+    <g v-click="1" class="arch-el">
+      <line x1="219" y1="340" x2="172" y2="232" class="data-link" stroke="var(--mulesoft-blue)" stroke-width="1.5"/>
+      <g filter="url(#bshadow)">
+        <rect x="78" y="190" width="132" height="42" rx="8" fill="var(--mulesoft-blue)"/>
+        <text x="144" y="214" text-anchor="middle" class="box-label" fill="#fff">🌉 MCP Bridge</text>
+      </g>
+    </g>
+
+    <!-- Direct link Order API -> Bridge: visible clicks 1-4, removed when proxy arrives -->
+    <line v-click="[1, 5]" x1="71" y1="340" x2="108" y2="232" class="data-link arch-el" stroke="var(--mulesoft-blue)" stroke-width="1.5"/>
+
+    <!-- Click 2: MCP Server + connection from DB -->
+    <g v-click="2" class="arch-el">
+      <line x1="367" y1="340" x2="367" y2="232" class="data-link" stroke="var(--mulesoft-blue)" stroke-width="1.5"/>
+      <g filter="url(#bshadow)">
+        <rect class="mcp-server-box" x="301" y="190" width="132" height="42" rx="8" fill="var(--mulesoft-blue)"/>
+        <text x="367" y="214" text-anchor="middle" class="box-label" fill="#fff">🛠️ MCP Server</text>
+      </g>
+    </g>
+
+    <!-- Click 3: Deploy check mark — MCP Server only (Bridge is auto-deployed) -->
+    <g v-click="3" class="arch-el">
+      <circle cx="423" cy="196" r="8" fill="var(--deploy-green)"/>
+      <path d="M419 196 l3 3 l5 -6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Click 4: AI Agent + connections from Bridge & Server -->
+    <g v-click="4" class="arch-el">
+      <line x1="144" y1="190" x2="206" y2="86" class="data-link" stroke="var(--gold)" stroke-width="1.5"/>
+      <line x1="367" y1="190" x2="272" y2="86" class="data-link" stroke="var(--gold)" stroke-width="1.5"/>
+      <g filter="url(#bshadow)">
+        <rect x="158" y="42" width="148" height="44" rx="10" fill="var(--black)" stroke="var(--gold)" stroke-width="2"/>
+        <text x="232" y="68" text-anchor="middle" class="box-label" fill="var(--warm-white)">🤖 AI Agent</text>
+      </g>
+    </g>
+
+    <!-- Click 5: API Proxy — replaces direct Order->Bridge link -->
+    <g v-click="5" class="arch-el">
+      <line x1="71" y1="340" x2="58" y2="302" class="data-link" stroke="var(--bonus-color)" stroke-width="1.2"/>
+      <line x1="78" y1="268" x2="100" y2="232" class="data-link" stroke="var(--bonus-color)" stroke-width="1.2"/>
+      <g filter="url(#bshadow)">
+        <rect x="13" y="268" width="100" height="34" rx="6" fill="var(--bonus-color)"/>
+        <text x="63" y="289" text-anchor="middle" class="box-label" fill="#fff">🔒 Proxy</text>
+      </g>
+    </g>
+
+    <!-- Click 6: Best Practices — enhanced MCP Server glow -->
+    <g v-click="6" class="arch-el">
+      <rect x="299" y="188" width="136" height="46" rx="10" fill="none" stroke="var(--bonus-color)" stroke-width="1.5" opacity="0.6" class="bp-glow"/>
+      <circle cx="423" cy="226" r="7" fill="var(--bonus-color)"/>
+      <text x="423" y="229.5" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="8" font-weight="700" fill="#fff">+</text>
+    </g>
+  </svg>
+</template>
+
+<style>
+/* SVG box labels — change font-size here to resize all labels at once */
+.box-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* Architecture entrance animation */
+.arch-el {
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+g.arch-el.slidev-vclick-hidden {
+  opacity: 0 !important;
+  transform: translateY(14px);
+}
+
+/* Data flow — marching dashes */
+@keyframes dash-flow {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -16; }
+}
+.data-link {
+  fill: none;
+  stroke-dasharray: 6 4;
+  animation: dash-flow 0.9s linear infinite;
+  stroke-linecap: round;
+}
+
+/* Best Practices enhancement glow */
+@keyframes bp-glow-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+.bp-glow {
+  animation: bp-glow-pulse 2.5s ease-in-out infinite;
+}
+
+.arch-svg {
+  width: 100%;
+  max-height: 400px;
+}
+</style>
