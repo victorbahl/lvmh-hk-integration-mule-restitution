@@ -12,23 +12,24 @@ class: text-white
 ---
 
 <span class="section-tag">LVMH Tech Hackathon</span>
-<span style="color: #B8B2AA; font-size: 0.55em; font-weight: 300; letter-spacing: 0.15em; display: block; margin-top: -20px;"><span style="font-weight: 1000;">Theme</span>: Integration / MuleSoft</span>
+<span class="cover-subtitle"><strong>Theme</strong>: Integration / MuleSoft</span>
 
 # Agent-Ready Order Management with MCPs
 
-<p style="color: #B8B2AA; font-weight: 300; max-width: 500px; line-height: 1.7; margin-bottom: 46px;">
-Your mission: make Order Management <strong style="color: #C4A265;">agent-ready</strong> — exposing APIs and data as MCPs that an AI agent can orchestrate in natural language.
+<p class="cover-description">
+Your mission: make Order Management <strong>agent-ready</strong> — exposing APIs and data as MCPs that an AI agent can orchestrate in natural language.
 </p>
 
-<div style="display: flex; gap: 32px; font-size: 0.72em; color: #6B6560;">
-  <div><span style="color: #B8B2AA; font-weight: 500;">Format</span><br>4-hour hackathon</div>
-  <div><span style="color: #B8B2AA; font-weight: 500;">Tools</span><br>Anypoint Platform · MuleSoft Vibes · Claude Code</div>
-  <div><span style="color: #B8B2AA; font-weight: 500;">Outcome</span><br>Live demo via Claude Desktop</div>
+<div class="cover-meta">
+  <div><span class="cover-meta-label">Date</span><br>April 9, 2026</div>
+  <div><span class="cover-meta-label">Location</span><br>Station F, Paris</div>
+  <div><span class="cover-meta-label">Format</span><br>4-hour hackathon</div>
+  <div><span class="cover-meta-label">Tools</span><br>Anypoint Platform · MuleSoft Vibes · Claude Code</div>
 </div>
 
 <div class="absolute top-8 right-10 flex items-center gap-4">
-  <img src="/logo-lvmh.svg" style="height: 14px; opacity: 0.6;" />
-  <img src="/logo-mulesoft.svg" style="height: 30px; opacity: 0.5; filter: brightness(0) invert(1);" />
+  <img src="/logo-lvmh.svg" class="cover-logo-lvmh" />
+  <img src="/logo-mulesoft.svg" class="cover-logo-mulesoft" />
 </div>
 
 ---
@@ -241,7 +242,9 @@ layout: two-cols-header
 
 ::left::
 
-Try different prompt strategies — iterate and refine. Experiment with what works best.
+Try different prompt strategies — iterate and refine.
+
+Experiment with what works best.
 
 > Hint: Claude is great at general Mule code, but newer components (like MCP) may not be in its training data. You could ask it to **search the web for examples** before generating unfamiliar syntax.
 
@@ -260,7 +263,9 @@ layout: two-cols-header
 
 Deploy your MCP server to the provided Anypoint environment using **MuleSoft Vibes**.
 
-Ask Vibes to deploy your application — it handles packaging, environment selection, and deployment through natural language commands. MCP Server must be live and callable.
+Ask Vibes to deploy your application — it handles packaging, environment selection, and deployment through natural language commands.
+
+MCP Server must be live and callable.
 
 ::right::
 
@@ -276,7 +281,9 @@ layout: two-cols-header
 
 ::left::
 
-Connect both MCPs to **Claude Desktop** (or any MCP-compatible agent) and test a live conversation that queries **all three systems** in a single interaction.
+Connect both MCPs to **Claude Desktop** (or any MCP-compatible agent)
+
+Test a live conversation that queries **all three systems** in a single interaction.
 
 > Try: *"Show me the 3 latest orders for customer tao.c@gmail.com, with shipment info, and the full product details for every item ordered."*
 
@@ -352,9 +359,22 @@ layout: two-cols-header
 
 On Anypoint Exchange, you will find an MCP server connected to Confluence that exposes some LVMH's integration standards and best practices.
 
-**Add this MCP to your environment and re-generate or refine your MuleSoft MCP Server to follow LVMH standards. Compare the before and after.**
+**Add this MCP to your environment and re-generate or refine your MuleSoft MCP Server to follow LVMH standards.**
+
+Compare the before and after.
 
 ::right::
+
+**Sneak peek:**
+
+- `LOG_001` Log Before External Call
+- `LOG_002` ···
+- `LOG_003` ···
+- `ERR_001` Wrap External Calls
+- `ERR_002` ···
+- `ERR_003` ···
+
+> *Connect the MCP to find out more.*
 
 ---
 layout: image-right
@@ -373,7 +393,7 @@ Prepare a short presentation with a **live demo** of your agent conversation end
 - **What surprised you** — moments that changed how you think about prompting, building integrations...
 - **What's next** — if you had another 4 hours, what would you add?
 
-<h2 style="color: #C4A265; margin-top: 24px; margin-bottom: 24px;">Be fun. Be creative. 🎉</h2>
+<h2 class="cta-gold">Be fun. Be creative. 🎉</h2>
 
 > **Need a slide deck?** [Fork this one](https://github.com/victorbahl/lvmh-hk-integration-mule-brief) — built with [Slidev](https://sli.dev) and mainly vibe-coded with Claude Code 😊
 

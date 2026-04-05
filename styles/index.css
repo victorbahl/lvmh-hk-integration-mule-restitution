@@ -177,3 +177,74 @@
   margin-bottom: 16px;
   display: block;
 }
+
+.slidev-layout.cover .cover-subtitle {
+  color: var(--light-gray);
+  font-size: 0.55em;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  display: block;
+  margin-top: -20px;
+}
+
+.slidev-layout.cover .cover-subtitle strong {
+  font-weight: 1000;
+  color: var(--light-gray);
+}
+
+.slidev-layout.cover .cover-description {
+  color: var(--light-gray);
+  font-weight: 300;
+  max-width: 500px;
+  line-height: 1.7;
+  margin-bottom: 46px;
+}
+
+.slidev-layout.cover .cover-description strong {
+  color: var(--gold);
+}
+
+.slidev-layout.cover .cover-meta {
+  display: flex;
+  gap: 32px;
+  font-size: 0.72em;
+  color: var(--mid-gray);
+}
+
+.slidev-layout.cover .cover-meta-label {
+  color: var(--light-gray);
+  font-weight: 500;
+}
+
+.slidev-layout.cover .cover-logo-lvmh {
+  height: 14px;
+  opacity: 0.6;
+}
+
+.slidev-layout.cover .cover-logo-mulesoft {
+  height: 30px;
+  opacity: 0.5;
+  filter: brightness(0) invert(1);
+}
+
+/* Call-to-action heading */
+.cta-gold {
+  color: var(--gold);
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+/* Global footer */
+.slide-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  z-index: 10;
+}
+
+.slide-footer span {
+  font-size: 0.65em;
+  color: var(--light-gray);
+}
+
+.slide-footer .footer-title {
+  letter-spacing: 0.08em;
+}
