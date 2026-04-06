@@ -275,6 +275,8 @@ MCP Server must be live and callable.
 ::right::
 
 ![MuleSoft Vibes in VS Code](/screenshot-mulesoft-vibes.png)
+<sub>MuleSoft Vibes in VS Code</sub>
+
 
 
 ---
@@ -294,7 +296,8 @@ Test a live conversation that queries **all three systems** in a single interact
 
 ::right::
 
-![Claude Desktop](/screenshot-mulesoft-vibes.png)
+![Claude Desktop](/screenshot-claude-desktop.png)
+<sub>Claude Desktop</sub>
 
 
 ---
