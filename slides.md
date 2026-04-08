@@ -201,7 +201,7 @@ layout: two-cols-header
 
 Using **Claude Code** with the ACB extension, vibe-code a Mule application that connects to the **Products Database** and exposes it as an MCP server.
 
-Use these details to connect to the existing **Products Database**:
+Use these details to connect to the existing MySQL **Products Database**:
 
 ::left::
 
@@ -294,12 +294,12 @@ Add both MCPs to **Claude Desktop** via the config file (`claude_desktop_config.
 {
   "mcpServers": {
     "mcp-bridge": {
-      "type": "streamablehttp",
-      "url": "<your-bridge-url>"
+      "command": "npx",
+      "args": ["mcp-remote", "<your-bridge-url>"]
     },
     "mcp-server": {
-      "type": "streamablehttp",
-      "url": "<your-server-url>"
+      "command": "npx",
+      "args": ["mcp-remote", "<your-server-url>"]
     }
   }
 }
@@ -309,7 +309,12 @@ Add both MCPs to **Claude Desktop** via the config file (`claude_desktop_config.
 
 Test a live conversation that queries **all three systems** in a single interaction.
 
-> Try: *"Show me the 3 latest orders with shipment info, and the full product details for every item ordered."*
+Try this prompt:
+
+```
+Show me the 3 latest orders with shipment info,
+and the full product details for every item ordered.
+```
 
 
 ---
