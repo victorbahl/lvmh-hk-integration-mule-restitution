@@ -38,7 +38,7 @@ Your mission: make Order Management <strong>agent-ready</strong> — exposing AP
 
 | Requirement | Details |
 |---|---|
-| **Anypoint Org access** | Credentials will be provided — make sure you can log in |
+| **Anypoint Org access** | Credentials will be provided — make sure you can log in. <br/> Always use **LVMH AI Hackathon** business group (not the root org) |
 | **VS Code** | Installed and up to date |
 | **Anypoint Code Builder Extension Pack** | Installed in VS Code |
 | **Claude account** | Required for Claude Code |
@@ -179,7 +179,7 @@ layout: two-cols-header
 
 **In API Manager**, create an MCP Bridge on top of the **Order API** and **Fulfillment API**.
 
-Browse each API spec and **select which endpoints to expose as tools** — not every endpoint needs to be agent-callable. Pick the ones that make sense for the use case.
+Browse each API spec and **select the endpoints to expose as tools** — you can select all of them.
 
 The bridge translates your selection into MCP-compatible tools — no code required.
 
@@ -288,16 +288,28 @@ layout: two-cols-header
 
 ::left::
 
-Connect both MCPs to **Claude Desktop** (or any MCP-compatible agent)
+Add both MCPs to **Claude Desktop** via the config file (`claude_desktop_config.json`), *not the UI — the bridge URL may not end with `/mcp`*.
 
-Test a live conversation that queries **all three systems** in a single interaction.
-
-> Try: *"Show me the 3 latest orders for customer tao.c@gmail.com, with shipment info, and the full product details for every item ordered."*
+```json
+{
+  "mcpServers": {
+    "mcp-bridge": {
+      "type": "streamablehttp",
+      "url": "<your-bridge-url>"
+    },
+    "mcp-server": {
+      "type": "streamablehttp",
+      "url": "<your-server-url>"
+    }
+  }
+}
+```
 
 ::right::
 
-![Claude Desktop](/screenshot-claude-desktop.png)
-<sub>Claude Desktop</sub>
+Test a live conversation that queries **all three systems** in a single interaction.
+
+> Try: *"Show me the 3 latest orders with shipment info, and the full product details for every item ordered."*
 
 
 ---
