@@ -129,32 +129,32 @@ clicks: 6
 
 <div class="steps-col">
 
-<div v-click="1" class="step-card">
+<div v-click="1" class="step-card clickable" @click="$slidev.nav.go(5)">
   <div class="step-num" style="background: var(--mulesoft-blue);">1</div>
   <div><div class="step-title"><span class="step-emoji">🌉</span> MCP Bridge</div><div class="step-desc">Bridge the REST APIs via API Manager</div></div>
 </div>
 
-<div v-click="2" class="step-card">
+<div v-click="2" class="step-card clickable" @click="$slidev.nav.go(6)">
   <div class="step-num" style="background: var(--mulesoft-blue);">2</div>
   <div><div class="step-title"><span class="step-emoji">🛠️</span> MCP Server</div><div class="step-desc">Vibe-code a Mule app for the Database</div></div>
 </div>
 
-<div v-click="3" class="step-card">
+<div v-click="3" class="step-card clickable" @click="$slidev.nav.go(8)">
   <div class="step-num" style="background: var(--deploy-green);">3</div>
   <div><div class="step-title"><span class="step-emoji">🚀</span> Deploy</div><div class="step-desc">Ship to Anypoint Platform</div></div>
 </div>
 
-<div v-click="4" class="step-card">
+<div v-click="4" class="step-card clickable" @click="$slidev.nav.go(9)">
   <div class="step-num" style="background: var(--gold);">4</div>
   <div><div class="step-title"><span class="step-emoji">🧪</span> Test</div><div class="step-desc">Agent queries all three systems</div></div>
 </div>
 
-<div v-click="5" class="step-card bonus">
+<div v-click="5" class="step-card bonus clickable" @click="$slidev.nav.go(10)">
   <div class="step-num" style="background: var(--bonus-color);">A</div>
   <div><div class="step-title"><span class="step-emoji">🔒</span> Data Masking</div><div class="step-desc">Apply policies on the Order API</div></div>
 </div>
 
-<div v-click="6" class="step-card bonus">
+<div v-click="6" class="step-card bonus clickable" @click="$slidev.nav.go(11)">
   <div class="step-num" style="background: var(--bonus-color);">B</div>
   <div><div class="step-title"><span class="step-emoji">📏</span> Best Practices</div><div class="step-desc">Refine code to LVMH standards</div></div>
 </div>
@@ -173,7 +173,7 @@ layout: two-cols-header
 ---
 
 # 🌉 Step 1 — Create the MCP Bridge
-**Tool**: API Manager > MCP Bridge
+[Overview](/4?clicks=6) > Step 1
 
 ::left::
 
@@ -197,11 +197,11 @@ layout: two-cols-header
 ---
 
 # 🛠️ Step 2 — Vibe-Code the MCP Server
-**Tool**: Claude Code / ACB in VS Code
+[Overview](/4?clicks=6) > Step 2
 
 Using **Claude Code** with the ACB extension, vibe-code a Mule application that connects to the **Products Database** and exposes it as an MCP server.
 
-Use these details to connect to the **Products Database**:
+Use these details to connect to the existing **Products Database**:
 
 ::left::
 
@@ -239,7 +239,7 @@ layout: two-cols-header
 ---
 
 # 🛠️ Step 2 — Vibe-Code the MCP Server
-**Tool**: Claude Code / ACB in VS Code
+[Overview](/4?clicks=6) > Step 2
 
 ::left::
 
@@ -262,7 +262,7 @@ layout: two-cols-header
 ---
 
 # 🚀 Step 3 — Deploy to Anypoint Platform
-**Tool**: MuleSoft Vibes / ACB in VS Code
+[Overview](/4?clicks=6) > Step 3
 
 ::left::
 
@@ -284,7 +284,7 @@ layout: two-cols-header
 ---
 
 # 🧪 Step 4 — Test with an AI Agent
-**Tool**: Claude Desktop (or similar MCP client)
+[Overview](/4?clicks=6) > Step 4
 
 ::left::
 
@@ -317,7 +317,7 @@ layout: two-cols-header
 ---
 
 # 🔒 Bonus A — Data Masking
-**Tool**: API Manager + MuleSoft Vibes
+[Overview](/4?clicks=6) > Bonus A
 
 ::left::
 
@@ -373,7 +373,7 @@ layout: two-cols-header
 ---
 
 # 📏 Bonus B — LVMH Best Practices
-**Tool**: Claude Code / ACB in VS Code
+[Overview](/4?clicks=6) > Bonus B
 
 ::left::
 

@@ -23,7 +23,7 @@
     <!-- Click 1: MCP Bridge + connections from both APIs -->
     <g v-click="1" class="arch-el">
       <line x1="250" y1="340" x2="188" y2="234" class="data-link" stroke="var(--mulesoft-blue)" stroke-width="1.5"/>
-      <g filter="url(#bshadow)">
+      <g filter="url(#bshadow)" class="arch-clickable" @click="$slidev.nav.go(5)">
         <rect x="94" y="190" width="132" height="44" rx="8" fill="var(--mulesoft-blue)"/>
         <text x="160" y="216" text-anchor="middle" class="box-label" fill="#fff">🌉 MCP Bridge</text>
       </g>
@@ -35,7 +35,7 @@
     <!-- Click 2: MCP Server + connection from DB -->
     <g v-click="2" class="arch-el">
       <line x1="427" y1="340" x2="395" y2="234" class="data-link" stroke="var(--mulesoft-blue)" stroke-width="1.5"/>
-      <g filter="url(#bshadow)">
+      <g filter="url(#bshadow)" class="arch-clickable" @click="$slidev.nav.go(6)">
         <rect class="mcp-server-box" x="329" y="190" width="132" height="44" rx="8" fill="var(--mulesoft-blue)"/>
         <text x="395" y="216" text-anchor="middle" class="box-label" fill="#fff">🛠️ MCP Server</text>
       </g>
@@ -51,7 +51,7 @@
     <g v-click="4" class="arch-el">
       <line x1="160" y1="190" x2="226" y2="86" class="data-link" stroke="var(--gold)" stroke-width="1.5"/>
       <line x1="395" y1="190" x2="300" y2="86" class="data-link" stroke="var(--gold)" stroke-width="1.5"/>
-      <g filter="url(#bshadow)">
+      <g filter="url(#bshadow)" class="arch-clickable" @click="$slidev.nav.go(9)">
         <rect x="182" y="42" width="148" height="44" rx="10" fill="#c15f3c" stroke="var(--gold)" stroke-width="2"/>
         <text x="256" y="68" text-anchor="middle" class="box-label" fill="var(--warm-white)">🤖 AI Agent</text>
       </g>
@@ -62,7 +62,7 @@
     <g v-click="5" class="arch-el">
       <line x1="73" y1="340" x2="58" y2="302" class="data-link" stroke="var(--bonus-color)" stroke-width="1.2"/>
       <line x1="78" y1="268" x2="116" y2="234" class="data-link" stroke="var(--bonus-color)" stroke-width="1.2"/>
-      <g filter="url(#bshadow)">
+      <g filter="url(#bshadow)" class="arch-clickable" @click="$slidev.nav.go(10)">
         <rect x="13" y="268" width="100" height="34" rx="6" fill="var(--bonus-color)"/>
         <text x="63" y="289" text-anchor="middle" class="box-label" fill="#fff">🔒 Proxy</text>
       </g>

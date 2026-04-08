@@ -74,3 +74,23 @@
   color: var(--mid-gray);
   margin-top: 1px;
 }
+
+/* Clickable step cards & arch elements */
+.step-card.clickable {
+  cursor: pointer;
+}
+.step-card.clickable:hover {
+  border-color: var(--mulesoft-blue);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.step-card.bonus.clickable:hover {
+  border-color: var(--bonus-color);
+}
+
+.arch-clickable {
+  cursor: pointer;
+}
+.arch-clickable:hover rect,
+.arch-clickable:hover .mcp-server-box {
+  filter: brightness(1.1);
+}
