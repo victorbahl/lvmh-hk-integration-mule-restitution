@@ -1,9 +1,9 @@
 {
-  "name": "lvmh-hk-integration-mule-brief",
+  "name": "lvmh-hk-integration-mule-restitution",
   "private": true,
   "scripts": {
     "dev": "slidev",
-    "build": "slidev build --base /lvmh-hk-integration-mule-brief/",
+    "build": "slidev build --base /lvmh-hk-integration-mule-restitution/",
     "export": "slidev export"
   },
   "dependencies": {
