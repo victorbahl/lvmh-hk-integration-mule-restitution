@@ -24,7 +24,7 @@ Your mission: make Order Management <strong>agent-ready</strong> — exposing AP
   <div><span class="cover-meta-label">Date</span><br>April 9, 2026</div>
   <div><span class="cover-meta-label">Location</span><br>Station F, Paris</div>
   <div><span class="cover-meta-label">Format</span><br>4-hour hackathon</div>
-  <div><span class="cover-meta-label">Tools</span><br>Anypoint Platform · MuleSoft Vibes · Claude Code</div>
+  <div><span class="cover-meta-label">Tools</span><br>Anypoint Platform · MuleSoft Vibes · Claude (Code) Maison</div>
 </div>
 
 <div class="absolute top-8 right-10 flex items-center gap-4">
@@ -32,131 +32,56 @@ Your mission: make Order Management <strong>agent-ready</strong> — exposing AP
   <img src="/logo-mulesoft.svg" class="cover-logo-mulesoft" />
 </div>
 
----
-
-# Prerequisites
-
-| Requirement | Details |
-|---|---|
-| **Anypoint Org access** | Credentials will be provided — make sure you can log in. <br/> Always use **LVMH AI Hackathon** business group (not the root org) |
-| **VS Code** | Installed and up to date |
-| **Anypoint Code Builder Extension Pack** | Installed in VS Code |
-| **Claude account** | Required for Claude Code |
-| **Claude Code Extension** | Installed in VS Code |
-| **Claude Desktop** (or similar MCP client) | To test and demo your deployed MCPs |
 
 ---
 
-# The Challenge
+# The Context
+Measuring the European Marketing Campaign — Live.
 
-## Two APIs. One Database. Agent-Ready via MCPs.
+The **CIO needs immediate visibility** on how our latest campaign is driving sales across our European customer base. Traditional development means long cycles and delayed insights — by the time the dashboard ships, the campaign momentum is gone.
 
-You will be provided with backend systems representing a simplified e-commerce backend typical of LVMH Maisons. Your job is to make them **agent-ready** by exposing them as MCPs that an AI agent can query in natural language.
-
-You are split into two teams. Use `team-1` or `team-2` as a prefix in all your naming (bridges, apps, etc.).
+Thanks to **AI**, we **empower the team to access the data and talk to it** — unlocking **live visibility** by conversing naturally with an agent across two APIs and a product database.
 
 <br/>
 
-| System | Type | What it exposes |
+| System | Type | Role in the campaign insight |
 |---|---|---|
-| **🛒 Order API** | 🌐 REST API | Orders placed by customers — order ID, customer info, items, timestamps |
-| **📦 Fulfillment API** | 🌐 REST API | Shipment and delivery status — tracking number, carrier, estimated delivery |
-| **🗄️ Product Catalog** | 🛢 DB | Product details — name, description, category, price, images |
-
+| **🛒 Order API** | 🌐 REST API | Surface orders tied to the campaign — customer info, items, timestamps |
+| **📦 Fulfillment API** | 🌐 REST API | Map delivery data to isolate our European customer base |
+| **🗄️ Product Catalog** | 🛢 DB | Identify the exact items promoted — name, category, price |
 
 
 ---
-hide: true
----
 
-# Suggested Build Plan
-
-
-<v-clicks>
-
-| | Step | What | Tool suggested |
-|---|---|---|---|
-| 🌉 | **1** | Create an MCP Bridge on top of the REST APIs | MuleSoft MCP Bridge |
-| 🛠️ | **2** | Vibe-code a MuleSoft MCP Server on top of the Database | Claude Code |
-| 🚀 | **3** | Deploy to Anypoint Platform | MuleSoft Vibes |
-| 🧪 | **4** | Test — the agent queries all three systems in one interaction | Claude Desktop |
-| 🔒 | **Bonus A** | Apply data masking policies on the Order API | Anypoint Platform + MuleSoft Vibes |
-| 📏 | **Bonus B** | Add the LVMH Best Practices MCP and refine your code to follow standards | MuleSoft Vibes / Claude Code |
-
-</v-clicks>
-
----
-hide: true
----
-# Suggested Architecture
-
-<span class="section-tag">Result</span>
-
-```mermaid {theme: 'base', themeVariables: {primaryColor: '#F5F0EB', primaryTextColor: '#1A1A1A', lineColor: '#B8B2AA'}, scale: 0.85}
-graph LR
-  OA["🛒&nbsp;Order API"] ~~~ PX["🔒&nbsp;API Proxy<br/><i style='font-size:0.8em'>(with Policy)</i>"] ~~~ BR["🌉&nbsp;MCP Bridge"]
-  FA["📦&nbsp;Fulfillment API"] ~~~ PH2[ ] ~~~ BR
-  DB[("🗄️&nbsp;Products DB")] ~~~ PH3[ ] ~~~ MS["🛠️&nbsp;MCP Server"]
-  BR ~~~ AG["🤖&nbsp;AI Agent<br/><i style='font-size:0.8em'>(e.g. Claude Desktop)</i>"]
-  MS ~~~ AG
-  OA -.-> PX
-  PX --> BR
-  OA --> BR
-  FA --> BR
-  DB --> MS
-  BR --> AG
-  MS --> AG
-
-  style OA fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style FA fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style DB fill:#F5F0EB,color:#1A1A1A,stroke:#B8B2AA,stroke-width:2px
-  style BR fill:#00A1DF,color:#fff,stroke:none
-  style MS fill:#D97757,color:#fff,stroke:none
-  style AG fill:#0A0A0A,color:#FAF8F5,stroke:#C4A265,stroke-width:2px
-  style PX fill:#C4A265,color:#fff,stroke:none
-  style PH2 fill:none,stroke:none,color:transparent
-  style PH3 fill:none,stroke:none,color:transparent
-  linkStyle 10 stroke:none
-```
-
----
-clicks: 6
----
-
-# Suggested Build Plan & Architecture
+# Build Plan & Architecture
 
 <div class="build-overview">
 
 <div class="steps-col">
 
-<div v-click="1" class="step-card clickable" @click="$slidev.nav.go(5)">
+<div class="step-card clickable" @click="$slidev.nav.go(5)">
   <div class="step-num" style="background: var(--mulesoft-blue);">1</div>
   <div><div class="step-title"><span class="step-emoji">🌉</span> MCP Bridge</div><div class="step-desc">Bridge the REST APIs via API Manager</div></div>
 </div>
 
-<div v-click="2" class="step-card clickable" @click="$slidev.nav.go(6)">
+<div class="step-card clickable" @click="$slidev.nav.go(6)">
   <div class="step-num" style="background: var(--mulesoft-blue);">2</div>
   <div><div class="step-title"><span class="step-emoji">🛠️</span> MCP Server</div><div class="step-desc">Vibe-code a Mule app for the Database</div></div>
 </div>
 
-<div v-click="3" class="step-card clickable" @click="$slidev.nav.go(8)">
+<div class="step-card clickable" @click="$slidev.nav.go(8)">
   <div class="step-num" style="background: var(--deploy-green);">3</div>
   <div><div class="step-title"><span class="step-emoji">🚀</span> Deploy</div><div class="step-desc">Ship to Anypoint Platform</div></div>
 </div>
 
-<div v-click="4" class="step-card clickable" @click="$slidev.nav.go(9)">
+<div class="step-card clickable" @click="$slidev.nav.go(9)">
   <div class="step-num" style="background: var(--gold);">4</div>
   <div><div class="step-title"><span class="step-emoji">🧪</span> Test</div><div class="step-desc">Agent queries all three systems</div></div>
 </div>
 
-<div v-click="5" class="step-card bonus clickable" @click="$slidev.nav.go(10)">
+<div class="step-card bonus clickable" @click="$slidev.nav.go(5)">
   <div class="step-num" style="background: var(--bonus-color);">A</div>
   <div><div class="step-title"><span class="step-emoji">🔒</span> Data Masking</div><div class="step-desc">Apply policies on the Order API</div></div>
-</div>
-
-<div v-click="6" class="step-card bonus clickable" @click="$slidev.nav.go(11)">
-  <div class="step-num" style="background: var(--bonus-color);">B</div>
-  <div><div class="step-title"><span class="step-emoji">📏</span> Best Practices</div><div class="step-desc">Refine code to LVMH standards</div></div>
 </div>
 
 </div>
@@ -167,260 +92,33 @@ clicks: 6
 
 </div>
 
-
----
-layout: two-cols-header
 ---
 
-# 🌉 Step 1 — Create the MCP Bridge
-[Overview](/4?clicks=6) > Step 1
+# 🤖 How AI Helped
 
-::left::
-
-**In API Manager**, create an MCP Bridge on top of the **Order API** and **Fulfillment API**.
-
-Browse each API spec and **select the endpoints to expose as tools** — you can select all of them.
-
-The bridge translates your selection into MCP-compatible tools — no code required.
-
-Deploy it on the **Ingress Flex Gateway** provided in your environment.
-
-📖 [MCP Bridge docs](https://docs.mulesoft.com/api-manager/latest/create-instance-task-mcp-bridge)
-
-::right::
-
-![Selecting endpoints in the MCP Bridge UI](/screenshot-mcp-bridge.png)
-<sub>Selecting endpoints in the MCP Bridge UI</sub>
+- **Code production and deployment** — from a blank editor to a running MCP on Anypoint, with the agent handling scaffolding, connector wiring and packaging end-to-end
+- **Planning** — the agent helped us break the challenge into concrete steps, weigh trade-offs and keep the team aligned on the next action
+- **Auto-fixing and troubleshooting** — stack traces and config errors were diagnosed and resolved in the loop, without leaving the IDE
+- **Presentation creation** — even this deck was largely vibe-coded, turning raw notes into a structured, on-brand story
 
 ---
-layout: two-cols-header
----
 
-# 🛠️ Step 2 — Vibe-Code the MCP Server
-[Overview](/4?clicks=6) > Step 2
+# 💡 Key Learnings
 
-Using **Claude Code** with the ACB extension, vibe-code a Mule application that connects to the **Products Database** and exposes it as an MCP server.
-
-Use these details to connect to the existing MySQL **Products Database**:
-
-::left::
-
-### 🔐 Connection
-
-```yaml
-host: cloud-services.demos.mulesoft.com
-port: 31717
-username: root
-password: Autom-tionR0cks.
-database: lvmh
-```
-
-::right::
-
-### 🛢️ Table `product_catalog`
-
-```sql
-id            INT AUTO_INCREMENT PRIMARY KEY
-product_id    VARCHAR(50)   -- PRD-XXXXXXXX
-sku           VARCHAR(50)
-name          VARCHAR(255)
-brand         VARCHAR(100)
-category      VARCHAR(100)
-subcategory   VARCHAR(100)
-price         DECIMAL(10,2)
-currency      VARCHAR(3)    -- default EUR
-stock_status  ENUM('IN_STOCK','OUT_OF_STOCK','LOW_STOCK')
-created_at    TIMESTAMP
-```
-
+- **It works well — but it needs iteration.** First prompts rarely land; refining intent and feeding back context is where the real value comes from
+- **Costs are high at the start.** Exploration and trial-and-error burn tokens fast — discipline and good prompting habits pay off quickly
 
 ---
-layout: two-cols-header
----
 
-# 🛠️ Step 2 — Vibe-Code the MCP Server
-[Overview](/4?clicks=6) > Step 2
+# 🔄 Impact on Ways of Working
 
-::left::
-
-Try different prompt strategies — iterate and refine.
-
-Experiment with what works best.
-
-> Claude is great at general Mule code, but newer components (like MCP) may not be in its training data.
-
-> Hint: You could ask it to **search the web for examples** before generating unfamiliar syntax.
-
-::right::
-
-![Claude Code in VS Code](/screenshot-claude-code.png)
-<sub>Claude Code in VS Code with MuleSoft Extension Pack</sub>
-
+- **No coding skills strictly required to make things happen** — product, data and business folks can now go from idea to working prototype by describing what they want in plain language
+- **Expertise is still essential — for verification.** Someone has to read the code, validate the architecture, catch the subtle bugs and own quality. AI doesn't remove the need for senior judgment, it amplifies it
+- **Everyone needs a developer mindset** — thinking in terms of inputs, outputs, edge cases and testability becomes a baseline skill, even for non-developers steering the agent
 
 ---
-layout: two-cols-header
----
 
-# 🚀 Step 3 — Deploy to Anypoint Platform
-[Overview](/4?clicks=6) > Step 3
+# 🚀 Next Steps in Your Daily Work
 
-::left::
-
-Deploy your MCP server to the provided Anypoint environment using **MuleSoft Vibes**.
-
-Ask Vibes to deploy your application — it handles packaging, environment selection, and deployment through natural language commands.
-
-MCP Server must be live and callable.
-
-::right::
-
-![MuleSoft Vibes in VS Code](/screenshot-mulesoft-vibes.png)
-<sub>MuleSoft Vibes in VS Code</sub>
-
-
-
----
-layout: two-cols-header
----
-
-# 🧪 Step 4 — Test with an AI Agent
-[Overview](/4?clicks=6) > Step 4
-
-::left::
-
-Add both MCPs to **Claude Desktop** via the config file (`claude_desktop_config.json`), *not the UI — the bridge URL may not end with `/mcp`*.
-
-```json
-{
-  "mcpServers": {
-    "mcp-bridge": {
-      "command": "npx",
-      "args": ["mcp-remote", "<your-bridge-url>"]
-    },
-    "mcp-server": {
-      "command": "npx",
-      "args": ["mcp-remote", "<your-server-url>"]
-    }
-  }
-}
-```
-
-::right::
-
-Test a live conversation that queries **all three systems** in a single interaction.
-
-Try this prompt:
-
-```
-Show me the 3 latest orders with shipment info,
-and the full product details for every item ordered.
-```
-
-
----
-layout: two-cols-header
----
-
-# 🔒 Bonus A — Data Masking
-[Overview](/4?clicks=6) > Bonus A
-
-::left::
-
-⚠️ Your agent sees **everything** — customer emails, addresses, phone numbers...
-
-In production, that could be a problem.
-
-````md magic-move
-```json
-{
-  "name": "Tao Chen",
-  "email": "tao.chen@gmail.com",
-  "address": "12 Rue de Rivoli, Paris"
-  "phone": "+33 6 12 34 56 78",
-}
-```
-```json
-{
-  "name": "T** C***",
-  "email": "t*****@g****.com",
-  "phone": "+33 * ** ** ** **",
-}
-```
-````
-
-<br/>
-
-<v-clicks>
-
-> 💡 Start with just **one field** — you can always add more later.
-
-</v-clicks>
-
-::right::
-
-<v-clicks>
-
-**Suggested steps**:
-
-</v-clicks>
-
-<v-clicks>
-
-1. Create an **API proxy** of the Order API in API Manager. Use the **label** to identify your team.
-2. Apply a **data masking policy** on the proxy using MuleSoft Vibes
-3. Update your **MCP Bridge routing** to point to the proxy instead of the original API
-4. Test that sensitive field is masked in the agent's response
-
-</v-clicks>
-
----
-layout: two-cols-header
----
-
-# 📏 Bonus B — LVMH Best Practices
-[Overview](/4?clicks=6) > Bonus B
-
-::left::
-
-On Anypoint Exchange, you will find an MCP server connected to Confluence that exposes some LVMH's integration standards and best practices.
-
-**Add this MCP to your environment and re-generate or refine your MuleSoft MCP Server to follow LVMH standards.**
-
-Compare the before and after.
-
-::right::
-
-**Sneak peek:**
-
-- `LOG_001` Log Before External Call
-- `LOG_002` ···
-- `LOG_003` ···
-- `ERR_001` Wrap External Calls
-- `ERR_002` ···
-- `ERR_003` ···
-
-> *Connect the MCP to find out more.*
-
----
-layout: image-right
-image: /showtime.png
-zoom: 0.75
----
-
-# 🎤 Show & Tell
-
-Prepare a short presentation with a **live demo** of your agent conversation end to end.
-
-**Tell us:**
-
-- **Live demo** — show your agent querying all three systems in one conversation, your IDE / flows
-- **The journey** — your vibe-coding process, prompts that worked (and didn't), how you iterated
-- **What surprised you** — moments that changed how you think about prompting, building integrations...
-- **What's next** — if you had another 4 hours, what would you add?
-
-<h2 class="cta-gold">Be fun. Be creative. 🎉</h2>
-
-> **Need a slide deck?** [Fork this one](https://github.com/victorbahl/lvmh-hk-integration-mule-brief) — built with [Slidev](https://sli.dev) and mainly vibe-coded with Claude Code 😊
-
-
-
+- **Make Claude (Code) Maison your daily driver** — not just for coding, but for writing specs, drafting architecture diagrams, reviewing PRs and documenting decisions. Treat the agent as a pair, not a tool
+- **Learn to optimize costs as you learn the craft** — scope prompts tightly, reuse context, pick the right model for the task, and measure what each workflow actually costs so value stays ahead of spend

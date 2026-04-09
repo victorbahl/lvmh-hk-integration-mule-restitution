@@ -20,8 +20,8 @@
       <text x="427" y="366" text-anchor="middle" class="box-label" fill="var(--charcoal)">🗄️ Products DB</text>
     </g>
 
-    <!-- Click 1: MCP Bridge + connections from both APIs -->
-    <g v-click="1" class="arch-el">
+    <!-- MCP Bridge + connections from both APIs -->
+    <g class="arch-el">
       <line x1="250" y1="340" x2="188" y2="234" class="data-link" stroke="var(--mulesoft-blue)" stroke-width="1.5"/>
       <g filter="url(#bshadow)" class="arch-clickable" @click="$slidev.nav.go(5)">
         <rect x="94" y="190" width="132" height="44" rx="8" fill="var(--mulesoft-blue)"/>
@@ -29,11 +29,18 @@
       </g>
     </g>
 
-    <!-- Direct link Order API -> Bridge: visible clicks 1-4, removed when proxy arrives -->
-    <line v-click="[1, 5]" x1="73" y1="340" x2="124" y2="234" class="data-link arch-el" stroke="var(--mulesoft-blue)" stroke-width="1.5"/>
+    <!-- API Proxy (Bonus A) — Order API routes through the proxy before reaching the Bridge -->
+    <g class="arch-el">
+      <line x1="73" y1="340" x2="58" y2="302" class="data-link" stroke="var(--bonus-color)" stroke-width="1.2"/>
+      <line x1="78" y1="268" x2="116" y2="234" class="data-link" stroke="var(--bonus-color)" stroke-width="1.2"/>
+      <g filter="url(#bshadow)" class="arch-clickable" @click="$slidev.nav.go(5)">
+        <rect x="13" y="268" width="100" height="34" rx="6" fill="var(--bonus-color)"/>
+        <text x="63" y="289" text-anchor="middle" class="box-label" fill="#fff">🔒 Proxy</text>
+      </g>
+    </g>
 
-    <!-- Click 2: MCP Server + connection from DB -->
-    <g v-click="2" class="arch-el">
+    <!-- MCP Server + connection from DB -->
+    <g class="arch-el">
       <line x1="427" y1="340" x2="395" y2="234" class="data-link" stroke="var(--mulesoft-blue)" stroke-width="1.5"/>
       <g filter="url(#bshadow)" class="arch-clickable" @click="$slidev.nav.go(6)">
         <rect class="mcp-server-box" x="329" y="190" width="132" height="44" rx="8" fill="var(--mulesoft-blue)"/>
@@ -41,36 +48,20 @@
       </g>
     </g>
 
-    <!-- Click 3: Deploy check mark — MCP Server only (Bridge is auto-deployed) -->
-    <g v-click="3" class="arch-el">
+    <!-- Deploy check mark — MCP Server only (Bridge is auto-deployed) -->
+    <g class="arch-el">
       <circle cx="451" cy="196" r="8" fill="var(--deploy-green)"/>
       <path d="M447 196 l3 3 l5 -6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
     </g>
 
-    <!-- Click 4: AI Agent + connections from Bridge & Server -->
-    <g v-click="4" class="arch-el">
+    <!-- AI Agent + connections from Bridge & Server -->
+    <g class="arch-el">
       <line x1="160" y1="190" x2="226" y2="86" class="data-link" stroke="var(--gold)" stroke-width="1.5"/>
       <line x1="395" y1="190" x2="300" y2="86" class="data-link" stroke="var(--gold)" stroke-width="1.5"/>
       <g filter="url(#bshadow)" class="arch-clickable" @click="$slidev.nav.go(9)">
         <rect x="182" y="42" width="148" height="44" rx="10" fill="#c15f3c" stroke="var(--gold)" stroke-width="2"/>
         <text x="256" y="68" text-anchor="middle" class="box-label" fill="var(--warm-white)">🤖 AI Agent</text>
       </g>
-    </g>
-
-
-    <!-- Click 5: API Proxy — replaces direct Order->Bridge link -->
-    <g v-click="5" class="arch-el">
-      <line x1="73" y1="340" x2="58" y2="302" class="data-link" stroke="var(--bonus-color)" stroke-width="1.2"/>
-      <line x1="78" y1="268" x2="116" y2="234" class="data-link" stroke="var(--bonus-color)" stroke-width="1.2"/>
-      <g filter="url(#bshadow)" class="arch-clickable" @click="$slidev.nav.go(10)">
-        <rect x="13" y="268" width="100" height="34" rx="6" fill="var(--bonus-color)"/>
-        <text x="63" y="289" text-anchor="middle" class="box-label" fill="#fff">🔒 Proxy</text>
-      </g>
-    </g>
-
-    <!-- Click 6: Best Practices — enhanced MCP Server glow -->
-    <g v-click="6" class="arch-el">
-      <rect x="324" y="185" width="142" height="54" rx="12" fill="none" stroke="var(--bonus-color)" stroke-width="2.5" class="bp-glow"/>
     </g>
   </svg>
 </template>
